@@ -135,4 +135,3 @@ class TicTacToe
   game = TicTacToe.new
   game.display_board
   game.play
-  game.holla
