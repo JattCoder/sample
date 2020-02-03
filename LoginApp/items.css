@@ -1,0 +1,66 @@
+body {
+  background: black;
+}
+
+#toolbar {
+  text-align: right;
+  width: auto;
+  height: 100px;
+  margin-left: 20px;
+  background-size: 350px;
+  border-style: offset;
+  background-position: center;
+}
+
+#loginbtn {
+  visibility: hidden;
+  margin: 20px;
+  float: right;
+  outline: none;
+  outline-width: 0;
+  height: 40px;
+  width: 150px;
+  font-family: monospace;
+  border-style: offset;
+  color: black;
+  border: 3px;
+  background: #a9a9a9;
+}
+
+#regbtn {
+  visibility: hidden;
+  margin: 20px;
+  float: right;
+  outline: none;
+  outline-width: 0;
+  height: 40px;
+  width: 150px;
+  font-family: monospace;
+  border-style: offset;
+  color: black;
+  border: 3px;
+  background: #a9a9a9;
+}
+
+#userimg {
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 40px;
+  width: 40px;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+#username {
+  margin-right: 20px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-family: monospace;
+  text-align: center;
+  color: white;
+  float: left;
+  height: 40px;
+}

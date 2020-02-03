@@ -1,0 +1,50 @@
+<<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<link type="text/css" href="passreset.css" rel="stylesheet"></link>
+  <head>
+    <meta charset="utf-8">
+    <title>C's - Password Reset</title>
+  </head>
+  <body>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-storagejs"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyDAEd80-M-xM66ubfw-cD-UVFG_phwiNpc",
+        authDomain: "pointofsale-3d0e8.firebaseapp.com",
+        databaseURL: "https://pointofsale-3d0e8.firebaseio.com",
+        projectId: "pointofsale-3d0e8",
+        storageBucket: "pointofsale-3d0e8.appspot.com",
+        messagingSenderId: "373323777452",
+        appId: "1:373323777452:web:8710de34dabf5b13576609"
+      };
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+    <div id="resetsection">
+      <h2 id="heading">Password Reset</h2>
+      <input type="Email" id="resetemail" placeholder="Email Address"></br>
+      <Button id="resetpass" onclick="toresetpass()"> Reset Password </Button>
+    </div>
+  </body>
+  <script type="text/javascript">
+      document.getElementById("resetemail").style.fontFamily = "monospace";
+      document.getElementById("heading").style.fontFamily = "monospace";
+      document.getElementById("resetpass").style.fontFamily = "monospace";
+
+      function toresetpass (){
+        var email = document.getElementById('resetemail').value;
+        firebase.auth().sendPasswordResetEmail(email).then(function(){
+          alert("Password Check Your Email.");
+          window.location.href = "MainLink.html";
+        }).catch(function(error){
+          var errorcode = error.code;
+          var errormessage = error.message;
+          alert(errormessage);
+        });
+      }
+  </script>
+</html>

@@ -1,0 +1,11 @@
+
+
+#profilelayout {
+  margin: 0 auto;
+  margin-top: 150px;
+  height: auto;
+  width: 400px;
+  background-size: 400px;
+  border-style: offset;
+  text-align: center;
+}

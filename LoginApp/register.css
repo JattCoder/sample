@@ -1,0 +1,120 @@
+body {
+  background-color: black;
+}
+
+.loader {
+  border: 8px solid black;
+  border-top: 10px solid #3498db;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#appapply {
+  margin: 0 auto;
+  margin-top: 200px;
+  height: auto;
+  width: 400px;
+  background-size: 400px;
+  border-style: offset;
+  background-position: center;
+}
+
+#regtitle {
+  position: inherit;
+  color: white;
+}
+
+#newname {
+  outline: none;
+  outline-width: 0;
+  color: white;
+  width: 350px;
+  padding: 4px;
+  height: 35px;
+  border: 3px #ff0000;
+  border-style: offset;
+  position: absolute;
+  background-position: center;
+  background-color: black;
+}
+
+#newemail {
+  outline: none;
+  outline-width: 0;
+  color: white;
+  width: 350px;
+  margin-top: 30px;
+  padding: 4px;
+  height: 35px;
+  border: 3px #ff0000;
+  border-style: offset;
+  position: absolute;
+  background-position: center;
+  background-color: black;
+}
+
+#newpass {
+  outline: none;
+  outline-width: 0;
+  color: white;
+  width: 350px;
+  margin-top: 60px;
+  padding: 4px;
+  height: 35px;
+  border: 3px #ff0000;
+  border-style: offset;
+  position: absolute;
+  background-position: center;
+  background-color: black;
+}
+
+#confirmpass {
+  outline: none;
+  outline-width: 0;
+  color: white;
+  width: 350px;
+  margin-top: 90px;
+  padding: 4px;
+  height: 35px;
+  border: 3px #ff0000;
+  border-style: offset;
+  position: absolute;
+  background-position: center;
+  background-color: black;
+}
+
+#phonenumber {
+  outline: none;
+  outline-width: 0;
+  color: white;
+  width: 350px;
+  margin-top: 120px;
+  padding: 4px;
+  height: 35px;
+  border: 3px #ff0000;
+  border-style: offset;
+  position: absolute;
+  background-position: center;
+  background-color: black;
+}
+
+#register {
+  outline: none;
+  outline-width: 0;
+  height: 35px;
+  width: 360px;
+  margin-top: 170px;
+  border-style: offset;
+  color: black;
+  border: 3px;
+  background: #a9a9a9;
+  position: absolute;
+  background-position: center;
+}

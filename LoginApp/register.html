@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<link type="text/css" href="register.css" rel="stylesheet"></link>
+  <head>
+    <title>C's - Register</title>
+    <div id="loading" class="loader"></div>
+  </head>
+  <body>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-storagejs"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyDAEd80-M-xM66ubfw-cD-UVFG_phwiNpc",
+        authDomain: "pointofsale-3d0e8.firebaseapp.com",
+        databaseURL: "https://pointofsale-3d0e8.firebaseio.com",
+        projectId: "pointofsale-3d0e8",
+        storageBucket: "pointofsale-3d0e8.appspot.com",
+        messagingSenderId: "373323777452",
+        appId: "1:373323777452:web:8710de34dabf5b13576609"
+      };
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+    <div id="appapply">
+      <h2 id="regtitle">C's Beverage and Deli - Register</h2>
+      <input type="name" id="newname" class="newprofile" placeholder="Full Name"></br>
+      <input type="email" id="newemail" class="newprofile" placeholder="Email Address"></br>
+      <input type="password" id="newpass" class="newprofile" placeholder="Password"></br>
+      <input type="password" id="confirmpass" class="newprofile" placeholder="Re-Password"></br>
+      <input type="number" id="phonenumber" class="newprofile" placeholder="Phone Number"></br>
+      <button id="register" onclick="signmeup()">Register</button>
+    </div>
+    <script type="text/javascript">
+      document.getElementById("newname").style.fontFamily = "monospace";
+      document.getElementById("regtitle").style.fontFamily = "monospace";
+      document.getElementById("newemail").style.fontFamily = "monospace";
+      document.getElementById("newpass").style.fontFamily = "monospace";
+      document.getElementById("confirmpass").style.fontFamily = "monospace";
+      document.getElementById("phonenumber").style.fontFamily = "monospace";
+      document.getElementById("register").style.fontFamily = "monospace";
+      function signmeup (){
+          document.getElementById('loading').style.visibility = "visible";
+          var email = document.getElementById('newemail').value;
+          var pass = document.getElementById('newpass').value;
+          var repass = document.getElementById('confirmpass').value;
+          var phone = document.getElementById('phonenumber').value;
+          var name = document.getElementById('newname').value;
+          if(pass == repass){
+            if(phone.length == 10){
+              firebase.auth().createUserWithEmailAndPassword(email, pass).then(function(){
+                adddata(name,email,phone);
+              }).catch(function(error) {
+                document.getElementById('loading').style.visibility = 'hidden';
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                alert(errorMessage);
+              });
+            }else{
+              alert("Phone number has to be 10 digits.");
+              document.getElementById('loading').style.visibility = 'hidden';
+            }
+          }else{
+            alert("Please Check Your Password!");
+            document.getElementById('loading').style.visibility = 'hidden';
+          }
+      }
+
+      function adddata(name,email,phone) {
+        var path = email.replace(/(~|`|!|@|#|$|%|^|&|\*|\(|\)|{|}|\[|\]|;|:|\"|'|<|,|\.|>|\?|\/|\\|\||-|_|\+|=)/g,"");
+        firebase.database().ref("C's Beverage/profiles/"+path).set({
+          name:name,
+          email:email,
+          phone:phone,
+          active:true
+        }).then(function(){
+          alert("Successfully Added "+name);
+          window.location.href = "MainLink.html";
+        }).catch(function(error){
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          alert(errorMessage);
+        });
+      }
+      document.getElementById('loading').style.visibility = 'hidden';
+    </script>
+  </body>
+</html>

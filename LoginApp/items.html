@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<link type="text/css" href="items.css" rel="stylesheet"></link>
+  <head>
+    <meta charset="utf-8">
+    <title>C's - Menu</title>
+    <div id="toolbar">
+      <header id="loginsection">
+        <img id="userimg" src="guestlogo.png" onclick="showmyprofile()"/>
+        <h2 id="username" href="" onclick="showmyprofile()"></h2>
+        <button id="regbtn" visibility="hidden" onclick="onReg()">Register</button>
+        <button id="loginbtn" visibility="hidden" onclick="onlogin()">Login</button>
+      </header>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-storagejs"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyDAEd80-M-xM66ubfw-cD-UVFG_phwiNpc",
+        authDomain: "pointofsale-3d0e8.firebaseapp.com",
+        databaseURL: "https://pointofsale-3d0e8.firebaseio.com",
+        projectId: "pointofsale-3d0e8",
+        storageBucket: "pointofsale-3d0e8.appspot.com",
+        messagingSenderId: "373323777452",
+        appId: "1:373323777452:web:8710de34dabf5b13576609"
+      };
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+  </head>
+  <body>
+    <div id="alldata">
+    </div>
+    <script type="text/javascript">
+      function getdata (){
+        firebase.database().ref("C's Beverage/Items").on('value',function(data){
+          var barcodes = data.val();
+          var keys = Object.keys(barcodes);
+          for(var i = 0; i < keys.length; i++){
+            var barcode = keys[i];
+            //here we pull data of each item stored in database
+            var name = barcodes[barcode].name;
+            var pack = barcodes[barcode].packStyle;
+            var pic = barcodes[barcode].image;
+            var price = barcodes[barcode].retailcost;
+            var barcode = barcode;
+            var countquan = 0;
+            var positive = document.createElement("img");
+            var negative = document.createElement("img");
+            var count = document.createElement("p");
+            var div = document.createElement("header");
+            var img = document.createElement('img');
+            var para = document.createElement("p");
+            var node = document.createTextNode(name+"  -  $"+price);
+            positive.style.borderRadius = "50%";
+            negative.style.borderRadius = "50%";
+            positive.style.height = "70px";
+            positive.style.width = "70px";
+            negative.style.height = "70px";
+            negative.style.width = "70px";
+            para.style.color = "white";
+            para.style.fontFamily = "monospace";
+            //margin - top - right - bottom - left
+            para.style.margin = "0px 20px 55px 30px";
+            para.style.fontSize = "xx-large";
+            var element = document.getElementById("alldata");
+            if (!pic) {
+              img.src = "comingsoon.jpg";
+            }else{
+              img.src = pic;
+            }
+            img.style.borderRadius = "50%";
+            img.style.height = "100px";
+            img.style.width = "100px";
+            img.style.margin = "0px 0px 0px 30px";
+            //para.appendChild(img);
+            para.appendChild(node);
+            div.appendChild(img);
+            div.appendChild(para);
+            element.appendChild(div);
+          }
+        }).catch(function(error){
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          alert(errorMessage);
+        });
+      }
+      function itemclicked (){
+        alert("Item Clicked");
+      }
+
+      function showmyprofile (){
+        var name = localStorage.getItem("name");
+        var email = localStorage.getItem("email");
+        var uid = localStorage.getItem("uid");
+        var emailv = localStorage.getItem("emailverified");
+        var photo = localStorage.getItem("photo");
+        var phone = localStorage.getItem("phone");
+        var anon = localStorage.getItem("anonmous");
+        var provider = localStorage.getItem("provider");
+        if(email == "guest@cs.com") alert("You have to be Registered or Logged In");
+        else window.location.href = "myprofile.html";
+      }
+    </script>
+  </body>
+  <script type="text/javascript">
+    function signinguest(em,ps){
+      firebase.auth().signInWithEmailAndPassword(em,ps).then(function(){
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            localStorage.setItem("name",user.displayName);
+            localStorage.setItem("email",user.email);
+            localStorage.setItem("emailverified",user.emailVerified);
+            localStorage.setItem("photo",user.photoURL);
+            localStorage.setItem("anonmous",user.isAnonymous);
+            localStorage.setItem("uid",user.uid);
+            localStorage.setItem("provider",user.providerData);
+            document.getElementById("username").innerHTML = "Guest";
+            getdata();
+          }
+        });
+      }).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        alert(errorMessage);
+        window.location.href = 'MainLink.html';
+      });
+    }
+    function onlogin (){
+      window.location.href = 'MainLink.html';
+    }
+    function onReg (){
+      window.location.href = 'register.html';
+    }
+    var name = localStorage.getItem("name");
+    var email = localStorage.getItem("email");
+    var emailv = localStorage.getItem("emailverified");
+    var photo = localStorage.getItem("photo");
+    var phone = localStorage.getItem("phone");
+    var anonmous = localStorage.getItem("anonmous");
+    var uid = localStorage.getItem("uid");
+    var provider = localStorage.getItem("provider");
+    if (email == null) {
+      var email = "guest@cs.com";
+      var pass = "xIisu878H757GhJjKloIuTYtGhHy6798HgFrTtyYu765434Fg6hJu";
+      document.getElementById('regbtn').style.visibility = "visible";
+      document.getElementById('loginbtn').style.visibility = "visible";
+      signinguest(email,pass);
+    }else{
+      document.getElementById('username').innerHTML = name;
+      getdata();
+    }
+  </script>
+</html>

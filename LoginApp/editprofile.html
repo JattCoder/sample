@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<link rel="stylesheet" href="editprofile.css">
+  <head>
+    <meta charset="utf-8">
+    <title>C's - Edit Profile</title>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyDAEd80-M-xM66ubfw-cD-UVFG_phwiNpc",
+        authDomain: "pointofsale-3d0e8.firebaseapp.com",
+        databaseURL: "https://pointofsale-3d0e8.firebaseio.com",
+        projectId: "pointofsale-3d0e8",
+        storageBucket: "pointofsale-3d0e8.appspot.com",
+        messagingSenderId: "373323777452",
+        appId: "1:373323777452:web:8710de34dabf5b13576609"
+      };
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+  </head>
+  <body>
+    <div id="profilelayout">
+      <img id="profilepic"/>
+      <input id="newpic" id="grabimg" type="file" multiple="false" accept="images/*" onchange="addnewpic()"/>
+      <input id="profilename" type="text"/>
+      <input id="profileemail" type="email"/>
+      <input id="profilephone" type="number"/>
+    </div>
+  </body>
+  <script type="text/javascript">
+  function addnewpic (){
+    var imagefile = document.getElementById("grabimg");
+    imagefile.addEventListener('change',function(e){
+      var file = e.target.files[0];
+      var email = "harmandeepmand.hm@gmail.com";
+      var path = email.replace(/(~|`|!|@|#|$|%|^|&|\*|\(|\)|{|}|\[|\]|;|:|\"|'|<|,|\.|>|\?|\/|\\|\||-|_|\+|=)/g,"");
+      var storageref = firebase.storage().ref("C's Beverage/"+path);
+      var task = storageref.put(file);
+      task.on('state_changed',
+        function progress (snapshop){
+          var percentage = (snapshop.bytesTransfered/snapshop.totalBytes)*100;
+          alert(percentage);
+        },
+        function error (err){
+
+        },
+        function complete (){
+          alert("File Transfered Completed!");
+        }
+    );
+  });
+  }
+  </script>
+</html>

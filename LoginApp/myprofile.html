@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<link rel="stylesheet" href="myprofile.css">
+  <head>
+    <meta charset="utf-8">
+    <title>Cs - My Profile</title>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-storagejs"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyDAEd80-M-xM66ubfw-cD-UVFG_phwiNpc",
+        authDomain: "pointofsale-3d0e8.firebaseapp.com",
+        databaseURL: "https://pointofsale-3d0e8.firebaseio.com",
+        projectId: "pointofsale-3d0e8",
+        storageBucket: "pointofsale-3d0e8.appspot.com",
+        messagingSenderId: "373323777452",
+        appId: "1:373323777452:web:8710de34dabf5b13576609"
+      };
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+  </head>
+  <body>
+    <div id="profilelayout">
+      <img id="profilepic"/>
+      <h2 id="profilename"></h2>
+      <h2 id="profileemail"></h2>
+      <h2 id="profilephone"></h2>
+      <h2 id="totalorders">Past Orders: -</h2>
+      <h2 id="remainingcredits">Credits: $-</h2>
+      <button id="specialorder" onclick="specialorders()">Special Orders</button>
+      <button id="pastorders" onclick="pastorders()">Orders History</button>
+      <button id="editprofile" onclick="editprofile()">Edit Profile</button>
+      <script type="text/javascript">
+        var name = localStorage.getItem("name");
+        var email = localStorage.getItem("email");
+        var uid = localStorage.getItem("uid");
+        var emailv = localStorage.getItem("emailverified");
+        var photo = localStorage.getItem("photo");
+        var phone = localStorage.getItem("phone");
+        var anon = localStorage.getItem("anonmous");
+        var provider = localStorage.getItem("provider");
+        var image = document.getElementById('profilepic');
+        if (photo == "empty") {
+          image.setAttribute("src", "guestlogo.png");
+        }else{
+          image.setAttribute("src", photo);
+        }
+        document.getElementById('profilename').innerHTML = name;
+        document.getElementById('profileemail').innerHTML = email;
+        document.getElementById('profilephone').innerHTML = phone;
+        function specialorders (){
+
+        }
+        function pastorders (){
+
+        }
+        function editprofile (){
+          window.location.href = "editprofile.html";
+        }
+      </script>
+    </div>
+  </body>
+</html>

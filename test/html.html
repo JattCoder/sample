@@ -1,0 +1,73 @@
+<html>
+  <title>Harmandeep Mand Notes!</title>
+  <link rel="stylesheet" src="css.css"></link>
+  <head>
+    <h1>Welcome to Harmandeep Mand's Notes Webpage!</h1>
+    <p id="welcome"></p>
+    <p id="date"></p>
+  </head>
+  <script type="text/javascript">
+        var name = prompt("Enter Your Name!");
+        if(name.length < 4 || !name.includes(" ")){
+          alert("Try Again!");
+          rename();
+        }else{
+          alert("Welcome "+name);
+          name = "Welcome "+name+". Today's Date and Time is: ";
+          document.getElementById("welcome").innerHTML = name;
+        }
+
+        function rename(){
+          var name = prompt("Enter Your Name!");
+          if(name.length < 4 || !name.includes(" ")){
+            alert("Try Again!");
+            rename();
+          }else{
+            alert("Welcome "+name);
+            name = "Welcome "+name+". Today's Date is: ";
+            document.getElementById("welcome").innerHTML = name;
+            getval();
+          }
+        }
+
+        function getval(){
+          firebase.databse().ref('charCodes').once("a").then(function(snapshot){
+            var code = snapshot.val();
+            alert("got value: "+code);
+          });
+      }
+        document.getElementById("date").innerHTML = Date();
+  </script>
+  <body>
+    <a href="http://www.google.com">Google</a>
+    <h1>Body Paragraph Here!</h1>
+    <p>Name :</p>
+    <input id="name" type="password"></input></br>
+    <p>Phone Number :</p>
+    <input id="phone" name="phone"></input></br>
+    <p>Email :</p>
+    <input id="email" name="email"></input></br>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-storagejs"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyBxtywr88c-cXAR1UbWDdifJZNiOMlXIws",
+        authDomain: "sampleweb-172a0.firebaseapp.com",
+        databaseURL: "https://sampleweb-172a0.firebaseio.com",
+        projectId: "sampleweb-172a0",
+        storageBucket: "sampleweb-172a0.appspot.com",
+        messagingSenderId: "505770062315",
+        appId: "1:505770062315:web:e394b5ca555aa96ac469ae",
+        measurementId: "G-116Y4JX3DH"
+      };
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+    <button onclick="databasework()"> Firebase Database </button></br></br>
+    <img id="kitten" onmouseover="mouseover()" src="http://makeameme.org/media/templates/120/grumpy_cat.jpg" onclick="kittenclicked()" alt="W3Schools.com" width="120" height="120">
+  </body>
+  <script type="text/javascript" src="js.js"></script>
+</html>

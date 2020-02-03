@@ -1,0 +1,95 @@
+body {
+  background: black;
+}
+
+#profilelayout {
+  margin: 0 auto;
+  margin-top: 150px;
+  height: auto;
+  width: 400px;
+  background-size: 400px;
+  border-style: offset;
+  text-align: center;
+}
+
+#profilepic {
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+}
+
+#profilename {
+  text-align: center;
+  position: inherit;
+  color: white;
+  font-family: monospace;
+}
+
+#profileemail {
+  text-align: center;
+  position: inherit;
+  color: white;
+  font-family: monospace;
+}
+
+#profilephone {
+  text-align: center;
+  position: inherit;
+  color: white;
+  font-family: monospace;
+}
+
+#totalorders {
+  color: white;
+  text-align: center;
+  font-family: monospace;
+}
+
+#remainingcredits {
+  margin-top: 7px;
+  color: white;
+  text-align: center;
+  font-family: monospace;
+}
+
+#specialorder {
+  margin-top: 20px;
+  text-align: center;
+  font-family: monospace;
+  outline: none;
+  outline-width: 0;
+  height: 35px;
+  width: 360px;
+  border-style: offset;
+  color: black;
+  border: 3px;
+  background: #a9a9a9;
+}
+
+#pastorders {
+  margin-top: 20px;
+  text-align: center;
+  font-family: monospace;
+  outline: none;
+  outline-width: 0;
+  height: 35px;
+  width: 360px;
+  border-style: offset;
+  color: black;
+  border: 3px;
+  background: #a9a9a9;
+}
+
+#editprofile {
+  margin-top: 20px;
+  text-align: center;
+  font-family: monospace;
+  outline: none;
+  outline-width: 0;
+  height: 35px;
+  width: 360px;
+  border-style: offset;
+  color: black;
+  border: 3px;
+  background: #a9a9a9;
+}
