@@ -41,6 +41,8 @@
 #freeze string so no one can modify it -- "string".freeze
 #to remove duplicates from array -- arr.uniq!
 #to get user input -- val = gets.chomp
+#for uppercase -- value.upcase
+#for downcase -- value.downcase
 
 
 #...........new class to write and read data.................
