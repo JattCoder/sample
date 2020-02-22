@@ -44,3 +44,38 @@
 #to get data from 2 different tables --> SELECT cats.name, dogs.name FROM cats, dogs;
 
 #to see data in rows and columns --> .mode column , .headers on
+
+#to create table in hash-string --> DB = Hash.new
+DB = {:conn => SQLite3::Database.new("db/Music.db")}
+sql = <<-SQL
+	CREATE TABLE IF NOT EXISTS students (
+		id INTEGER PRIMARY KEY,
+		name TEXT,
+		grade = INTEGER
+		)
+	SQL
+DB[:conn].execute(sql)
+
+#to save data to hash-string --> 
+sql = <<-SQL
+	INSERT INTO students (name, grade)
+	VALUES(?,?)
+	SQL
+DB[:conn].execute(sql,self.name,self.grade)
+id = DB[:conn].execute("SELECT last_insert_rowid() FROM students")[0][0]
+# to get last unique id created --> SELECT last_insert_rowid() FROM songs
+
+#to fetch all data from table -->
+sql = <<-SQL
+	SELECT * FROM students
+	SQL
+DB[:conn].execute(sql).map do |row|
+	#here we have array of data of row
+	#or can return to same class as --> self.new_from_db(row)
+end.first #.first is just grabbing first element from the returned array
+
+#to update data in database -->
+sql = "UPDATE students SET name = ?, grade= ? WHERE name = ?"
+DB[:conn].execute(sql, self.name, self.grade, self.name)
+
+#to drop a table from database --> DROP TABLE IF EXISTS students
